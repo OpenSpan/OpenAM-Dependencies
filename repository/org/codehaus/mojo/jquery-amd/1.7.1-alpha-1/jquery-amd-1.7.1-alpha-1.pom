@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>javascript-libraries</artifactId>
+		<version>2.0.0-alpha-1</version>
+	</parent>
+
+	<artifactId>jquery-amd</artifactId>
+	<version>1.7.1-alpha-1</version>
+
+	<name>jQuery AMD Library</name>
+	<description>jQuery with AMD wrapper</description>
+
+	<licenses>
+		<license>
+			<url>http://www.gnu.org/licenses/gpl-2.0.html</url>
+			<name>GPL 2.0</name>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<properties>
+		<projectVersion>${project.version}</projectVersion>
+	</properties>
+
+	<packaging>pom</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>almond</artifactId>
+			<version>0.0.2-alpha-1</version>
+			<type>js</type>
+		</dependency>
+	</dependencies>
+
+	<!-- We can't use the plugin extension for this project as it relies upon 
+		the artifact produced here to work - chicken and egg. -->
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>js-import-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>webminifier-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+  <scm>
+    <connection>scm:svn:https://svn.codehaus.org/mojo/tags/jquery-amd-1.7.1-alpha-1</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/tags/jquery-amd-1.7.1-alpha-1</developerConnection>
+    <url>http://fisheye.codehaus.org/browse/mojo/tags/jquery-amd-1.7.1-alpha-1</url>
+  </scm>
+</project>

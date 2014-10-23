@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>javascript-libraries</artifactId>
+		<version>2.0.0-alpha-1</version>
+	</parent>
+
+	<artifactId>almond</artifactId>
+	<version>0.0.2-alpha-1</version>
+
+	<name>almond</name>
+	<description>AMD loader providing the minimal AMD API footprint.</description>
+
+	<licenses>
+		<license>
+			<url>http://www.linfo.org/bsdlicense.html</url>
+			<name>BSD</name>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<properties>
+		<projectVersion>${project.version}</projectVersion>
+	</properties>
+
+	<packaging>pom</packaging>
+
+	<!-- We can't use the plugin extension for this project as it relies upon 
+		the artifact produced here to work - chicken and egg. -->
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>js-import-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>webminifier-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+  <scm>
+    <connection>scm:svn:https://svn.codehaus.org/mojo/tags/almond-0.0.2-alpha-1</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/tags/almond-0.0.2-alpha-1</developerConnection>
+    <url>http://fisheye.codehaus.org/browse/mojo/tags/almond-0.0.2-alpha-1</url>
+  </scm>
+</project>

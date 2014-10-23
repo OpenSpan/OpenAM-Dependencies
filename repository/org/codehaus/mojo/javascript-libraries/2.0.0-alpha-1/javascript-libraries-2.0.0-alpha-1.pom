@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+
+	<parent>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>mojo-parent</artifactId>
+		<version>30</version>
+		<relativePath />
+	</parent>
+
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>javascript-libraries</artifactId>
+	<version>2.0.0-alpha-1</version>
+
+	<packaging>pom</packaging>
+
+	<name>JavaScript Libraries</name>
+	<description>Container for JS library modules</description>
+	<url>http://mojo.codehaus.org/javascript-maven-tools/javascript-libraries/</url>
+
+	<issueManagement>
+		<system>jira</system>
+		<url>http://jira.codehaus.org/browse/MJS</url>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<name>Apache 2.0</name>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<properties>
+		<projectVersion>${project.version}</projectVersion>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<!-- You'd think that we might include javascript-libraries as a module 
+		here but we don't because the libraries have their own release cycle. The 
+		library release cycle correlates to the release cycles of the projects they 
+		represent. -->
+
+
+	<developers>
+		<developer>
+			<id>huntc</id>
+			<timezone>+10</timezone>
+			<url>http://christopherhunt-software.blogspot.com/</url>
+		</developer>
+		<developer>
+			<name>Ben Jones</name>
+			<timezone>+10</timezone>
+			<url>http://octopod.org</url>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:svn:https://svn.codehaus.org/mojo/tags/javascript-libraries-2.0.0-alpha-1</connection>
+		<developerConnection>scm:svn:https://svn.codehaus.org/mojo/tags/javascript-libraries-2.0.0-alpha-1</developerConnection>
+		<url>http://fisheye.codehaus.org/browse/mojo/tags/javascript-libraries-2.0.0-alpha-1</url>
+	</scm>
+
+	<distributionManagement>
+		<site>
+			<id>codehaus.org</id>
+			<name>Mojo Website</name>
+			<url>dav:https://dav.codehaus.org/mojo/javascript-maven-tools/javascript-libraries</url>
+		</site>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.doxia</groupId>
+						<artifactId>doxia-module-confluence</artifactId>
+						<version>1.2</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<excludeModules>apt</excludeModules>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.5</version>
+					<executions>
+						<execution>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>resources</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>js-import-maven-plugin</artifactId>
+					<version>1.0.1</version>
+					<executions>
+						<execution>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>import-js</goal>
+								<goal>generate-html</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>webminifier-maven-plugin</artifactId>
+					<version>1.0.1</version>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>minify-js</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.2.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>1.7</version>
+					<executions>
+						<execution>
+							<id>attach-artifacts</id>
+							<phase>package</phase>
+							<goals>
+								<goal>attach-artifact</goal>
+							</goals>
+							<configuration>
+								<artifacts>
+									<artifact>
+										<file>target/min/classes/1.js</file>
+										<type>js</type>
+									</artifact>
+								</artifacts>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
